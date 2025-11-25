@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Temporadas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        :root { --primary-color: #DC143C; --secondary-color: #8B0000; }
+        body { background-color: #1a1a1a; color: #ffffff; }
+        .navbar { background-color: var(--secondary-color) !important; }
+        .navbar-brand, .nav-link { color: #ffffff !important; }
+        h2 { color: var(--primary-color); border-bottom: 3px solid var(--primary-color); padding-bottom: 10px; }
+        .table { background-color: #2a2a2a; color: #ffffff; }
+        .table thead { background-color: var(--secondary-color); }
+        .btn-voltar { background-color: var(--primary-color); color: #ffffff; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">Filmes & Séries</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/series/">Séries</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <a href="/" class="btn btn-voltar mb-3">← Voltar</a>
+        <h2 class="mb-4">Temporadas</h2>
+        <table class="table table-striped">
+            <thead><tr><th>Nome</th></tr></thead>
+            <tbody>
+                {% for temporada in temporadas %}
+                <tr><td>{{ temporada.nome }}</td></tr>
+                {% empty %}
+                <tr><td class="text-center">Nenhuma temporada cadastrada</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

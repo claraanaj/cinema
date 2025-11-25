@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gêneros</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        :root { --primary-color: #DC143C; --secondary-color: #8B0000; }
+        body { background-color: #1a1a1a; color: #ffffff; }
+        .navbar { background-color: var(--secondary-color) !important; }
+        .navbar-brand, .nav-link { color: #ffffff !important; }
+        .nav-link:hover { color: var(--primary-color) !important; }
+        h2 { color: var(--primary-color); border-bottom: 3px solid var(--primary-color); padding-bottom: 10px; }
+        .table { background-color: #2a2a2a; color: #ffffff; }
+        .table thead { background-color: var(--secondary-color); }
+        .table tbody tr:hover { background-color: rgba(220, 20, 60, 0.2); }
+        .btn-voltar { background-color: var(--primary-color); color: #ffffff; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">Filmes & Séries</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/filmes/">Filmes</a></li>
+                <li class="nav-item"><a class="nav-link" href="/admin/">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <a href="/" class="btn btn-voltar mb-3">← Voltar</a>
+        <h2 class="mb-4">Gêneros</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Excluir</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for genero in generos %}
+                <tr>
+                    <td>{{ genero.nome }}</td>
+                    <td><a href="/delete-genero/{{ genero.id }}" class="btn btn-danger btn-sm">Excluir</a></td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="2" class="text-center">Nenhum gênero cadastrado</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
