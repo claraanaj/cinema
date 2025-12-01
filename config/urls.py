@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.urls import path
-from app.views import editar_continente
 from app.views import *
 
 urlpatterns = [
@@ -18,7 +17,6 @@ urlpatterns = [
     path('filmes-atores/', FilmesAtoresView.as_view(), name='filmes_atores'),
     path('series-episodios/', SeriesEpisodiosView.as_view(), name='series_episodios'),
     
-    # URLs de DELETE
     path('delete-filme/<int:id>/', DeleteFilmeView.as_view(), name='delete_filme'),
     path('delete-serie/<int:id>/', DeleteSerieView.as_view(), name='delete_serie'),
     path('delete-ator/<int:id>/', DeleteAtorView.as_view(), name='delete_ator'),
@@ -27,10 +25,9 @@ urlpatterns = [
     path('delete-pais/<int:id>/', DeletePaisView.as_view(), name='delete_pais'),
     path('delete-continente/<int:id>/', DeleteContinenteView.as_view(), name='delete_continente'),
     
-    # URLs de EDITAR
     path('editar-filme/<int:id>/', EditarFilmeView.as_view(), name='editar_filme'),
     path('editar-serie/<int:id>/', EditarSerieView.as_view(), name='editar_serie'),
     path('editar-ator/<int:id>/', EditarAtorView.as_view(), name='editar_ator'),
     path('editar-diretor/<int:id>/', EditarDiretorView.as_view(), name='editar_diretor'),
-    path('editar-continente/<int:id>/', editar_continente, name='editar_continente'),
+    path('editar-continente/<int:id>/', EditarContinenteView.as_view(), name='editar_continente'),
 ]

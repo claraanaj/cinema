@@ -131,39 +131,25 @@ class DeleteContinenteView(View):
         messages.success(request, 'Continente excluído com sucesso!')
         return redirect('continentes')
 
+
 class EditarFilmeView(View):
     template_name = 'editar_filme.html'
 
-    def get(self, request, id):
-        filme = Filme.objects.get(id=id)
-        generos = Genero.objects.all()
-        paises = Pais.objects.all()
-        diretores = Diretor.objects.all()
+    def get(self, request, id, *args, **kwargs):
+        filme = get_object_or_404(Filme, id=id)
+        form = FilmeForm(instance=filme)
+        return render(request, self.template_name, {'filme': filme, 'form': form})
 
-        return render(request, self.template_name, {
-            'filme': filme,
-            'generos': generos,
-            'paises': paises,
-            'diretores': diretores,
-        })
-
-    def post(self, request, id):
-        filme = Filme.objects.get(id=id)
-
-        filme.nome = request.POST.get("nome")
-        filme.duracao = request.POST.get("duracao")
-        filme.sinopse = request.POST.get("sinopse")
-        filme.site_oficial = request.POST.get("site_oficial")
-        filme.data_lancamento = request.POST.get("data_lancamento")
-        filme.nota_avaliacao = request.POST.get("nota_avaliacao")
-
-        filme.genero_id = request.POST.get("genero")
-        filme.pais_id = request.POST.get("pais")
-        filme.diretor_id = request.POST.get("diretor")
-
-        filme.save()
-
-        return redirect("filmes")
+    def post(self, request, id, *args, **kwargs):
+        filme = get_object_or_404(Filme, id=id)
+        form = FilmeForm(request.POST, instance=filme)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Filme editado com sucesso!')
+            return redirect('editar_filme', id=id)
+        else:
+            messages.error(request, 'Corrija os erros no formulário.')
+        return render(request, self.template_name, {'filme': filme, 'form': form})
 
 
 class EditarSerieView(View):
@@ -226,12 +212,21 @@ class EditarDiretorView(View):
         return render(request, self.template_name, {'diretor': diretor, 'form': form})
 
 
-def editar_continente(request, id):
-    continente = get_object_or_404(Continente, id=id)
+class EditarContinenteView(View):
+    template_name = 'editar_continente.html'
 
-    if request.method == "POST":
-        continente.nome = request.POST.get("nome")
-        continente.save()
-        return redirect("continentes")
+    def get(self, request, id, *args, **kwargs):
+        continente = get_object_or_404(Continente, id=id)
+        form = ContinenteForm(instance=continente)
+        return render(request, self.template_name, {'continente': continente, 'form': form})
 
-    return render(request, "editar_continente.html", {"continente": continente})
+    def post(self, request, id, *args, **kwargs):
+        continente = get_object_or_404(Continente, id=id)
+        form = ContinenteForm(request.POST, instance=continente)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Continente editado com sucesso!')
+            return redirect('editar_continente', id=id)
+        else:
+            messages.error(request, 'Corrija os erros no formulário.')
+        return render(request, self.template_name, {'continente': continente, 'form': form})
