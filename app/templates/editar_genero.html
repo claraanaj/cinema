@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Gênero</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        :root { --primary-color: #DC143C; --secondary-color: #8B0000; }
+        body { background-color: #1a1a1a; color: #ffffff; }
+        h2 { color: var(--primary-color); border-bottom: 3px solid var(--primary-color); padding-bottom: 10px; }
+        .form-control { background-color: #2a2a2a; color: #ffffff; border: 1px solid var(--secondary-color); }
+        .form-control:focus { background-color: #333333; color: #ffffff; border-color: var(--primary-color); }
+        label { color: var(--primary-color); font-weight: 600; }
+        .btn-voltar { background-color: var(--secondary-color); color: #ffffff; }
+        .btn-salvar { background-color: var(--primary-color); color: #ffffff; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <a href="/generos/" class="btn btn-voltar mb-3">← Voltar</a>
+        <h2>Editar Gênero: {{ genero.nome }}</h2>
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-salvar btn-block btn-lg mt-3">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>

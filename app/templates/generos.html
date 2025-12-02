@@ -21,6 +21,9 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <a class="navbar-brand" href="/">Filmes & Séries</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
@@ -36,6 +39,7 @@
             <thead>
                 <tr>
                     <th>Nome</th>
+                    <th>Editar</th>
                     <th>Excluir</th>
                 </tr>
             </thead>
@@ -43,13 +47,17 @@
                 {% for genero in generos %}
                 <tr>
                     <td>{{ genero.nome }}</td>
+                    <td><a href="/editar-genero/{{ genero.id }}" class="btn btn-warning btn-sm">Editar</a></td>
                     <td><a href="/delete-genero/{{ genero.id }}" class="btn btn-danger btn-sm">Excluir</a></td>
                 </tr>
                 {% empty %}
-                <tr><td colspan="2" class="text-center">Nenhum gênero cadastrado</td></tr>
+                <tr><td colspan="3" class="text-center">Nenhum gênero cadastrado</td></tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

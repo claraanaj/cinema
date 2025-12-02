@@ -76,6 +76,7 @@ class SeriesEpisodiosView(View):
         return render(request, 'series_episodios.html', {'series_episodios': series_episodios})
 
 
+# Views de DELETE
 class DeleteFilmeView(View):
     def get(self, request, id, *args, **kwargs):
         filme = Filme.objects.get(id=id)
@@ -132,6 +133,7 @@ class DeleteContinenteView(View):
         return redirect('continentes')
 
 
+# Views de EDITAR
 class EditarFilmeView(View):
     template_name = 'editar_filme.html'
 
@@ -230,3 +232,108 @@ class EditarContinenteView(View):
         else:
             messages.error(request, 'Corrija os erros no formulário.')
         return render(request, self.template_name, {'continente': continente, 'form': form})
+
+
+class EditarGeneroView(View):
+    template_name = 'editar_genero.html'
+
+    def get(self, request, id, *args, **kwargs):
+        genero = get_object_or_404(Genero, id=id)
+        form = GeneroForm(instance=genero)
+        return render(request, self.template_name, {'genero': genero, 'form': form})
+
+    def post(self, request, id, *args, **kwargs):
+        genero = get_object_or_404(Genero, id=id)
+        form = GeneroForm(request.POST, instance=genero)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Gênero editado com sucesso!')
+            return redirect('editar_genero', id=id)
+        else:
+            messages.error(request, 'Corrija os erros no formulário.')
+        return render(request, self.template_name, {'genero': genero, 'form': form})
+
+
+class EditarPaisView(View):
+    template_name = 'editar_pais.html'
+
+    def get(self, request, id, *args, **kwargs):
+        pais = get_object_or_404(Pais, id=id)
+        form = PaisForm(instance=pais)
+        return render(request, self.template_name, {'pais': pais, 'form': form})
+
+    def post(self, request, id, *args, **kwargs):
+        pais = get_object_or_404(Pais, id=id)
+        form = PaisForm(request.POST, instance=pais)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'País editado com sucesso!')
+            return redirect('editar_pais', id=id)
+        else:
+            messages.error(request, 'Corrija os erros no formulário.')
+        return render(request, self.template_name, {'pais': pais, 'form': form})
+
+
+class EditarTemporadaView(View):
+    template_name = 'editar_temporada.html'
+
+    def get(self, request, id, *args, **kwargs):
+        temporada = get_object_or_404(Temporada, id=id)
+        form = TemporadaForm(instance=temporada)
+        return render(request, self.template_name, {'temporada': temporada, 'form': form})
+
+    def post(self, request, id, *args, **kwargs):
+        temporada = get_object_or_404(Temporada, id=id)
+        form = TemporadaForm(request.POST, instance=temporada)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Temporada editada com sucesso!')
+            return redirect('editar_temporada', id=id)
+        else:
+            messages.error(request, 'Corrija os erros no formulário.')
+        return render(request, self.template_name, {'temporada': temporada, 'form': form})
+
+
+class EditarEpisodioView(View):
+    template_name = 'editar_episodio.html'
+
+    def get(self, request, id, *args, **kwargs):
+        episodio = get_object_or_404(Episodio, id=id)
+        form = EpisodioForm(instance=episodio)
+        return render(request, self.template_name, {'episodio': episodio, 'form': form})
+
+    def post(self, request, id, *args, **kwargs):
+        episodio = get_object_or_404(Episodio, id=id)
+        form = EpisodioForm(request.POST, instance=episodio)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Episódio editado com sucesso!')
+            return redirect('editar_episodio', id=id)
+        else:
+            messages.error(request, 'Corrija os erros no formulário.')
+        return render(request, self.template_name, {'episodio': episodio, 'form': form})
+
+
+# Views de DELETE adicionais
+class DeleteTemporadaView(View):
+    def get(self, request, id, *args, **kwargs):
+        temporada = Temporada.objects.get(id=id)
+        temporada.delete()
+        messages.success(request, 'Temporada excluída com sucesso!')
+        return redirect('temporadas')
+
+
+class DeleteEpisodioView(View):
+    def get(self, request, id, *args, **kwargs):
+        episodio = Episodio.objects.get(id=id)
+        episodio.delete()
+        messages.success(request, 'Episódio excluído com sucesso!')
+        return redirect('episodios')
+
+
+class DeleteFilmeAtorView(View):
+    def get(self, request, id, *args, **kwargs):
+        filme_ator = FilmeAtor.objects.get(id=id)
+        filme_ator.delete()
+        messages.success(request, 'Relação filme-ator excluída com sucesso!')
+        return redirect('filmes_atores')

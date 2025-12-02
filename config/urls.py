@@ -16,7 +16,7 @@ urlpatterns = [
     path('episodios/', EpisodiosView.as_view(), name='episodios'),
     path('filmes-atores/', FilmesAtoresView.as_view(), name='filmes_atores'),
     path('series-episodios/', SeriesEpisodiosView.as_view(), name='series_episodios'),
-    
+
     path('delete-filme/<int:id>/', DeleteFilmeView.as_view(), name='delete_filme'),
     path('delete-serie/<int:id>/', DeleteSerieView.as_view(), name='delete_serie'),
     path('delete-ator/<int:id>/', DeleteAtorView.as_view(), name='delete_ator'),
@@ -24,10 +24,17 @@ urlpatterns = [
     path('delete-genero/<int:id>/', DeleteGeneroView.as_view(), name='delete_genero'),
     path('delete-pais/<int:id>/', DeletePaisView.as_view(), name='delete_pais'),
     path('delete-continente/<int:id>/', DeleteContinenteView.as_view(), name='delete_continente'),
+    path('delete-temporada/<int:id>/', DeleteTemporadaView.as_view(), name='delete_temporada'),
+    path('delete-episodio/<int:id>/', DeleteEpisodioView.as_view(), name='delete_episodio'),
+    path('delete-filme-ator/<int:id>/', DeleteFilmeAtorView.as_view(), name='delete_filme_ator'),
     
     path('editar-filme/<int:id>/', EditarFilmeView.as_view(), name='editar_filme'),
     path('editar-serie/<int:id>/', EditarSerieView.as_view(), name='editar_serie'),
     path('editar-ator/<int:id>/', EditarAtorView.as_view(), name='editar_ator'),
     path('editar-diretor/<int:id>/', EditarDiretorView.as_view(), name='editar_diretor'),
     path('editar-continente/<int:id>/', EditarContinenteView.as_view(), name='editar_continente'),
+    path('editar-genero/<int:id>/', EditarGeneroView.as_view(), name='editar_genero'),
+    path('editar-pais/<int:id>/', EditarPaisView.as_view(), name='editar_pais'),
+    path('editar-temporada/<int:id>/', EditarTemporadaView.as_view(), name='editar_temporada'),
+    path('editar-episodio/<int:id>/', EditarEpisodioView.as_view(), name='editar_episodio'),
 ]
