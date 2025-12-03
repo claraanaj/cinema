@@ -16,7 +16,7 @@ urlpatterns = [
     path('episodios/', EpisodiosView.as_view(), name='episodios'),
     path('filmes-atores/', FilmesAtoresView.as_view(), name='filmes_atores'),
     path('series-episodios/', SeriesEpisodiosView.as_view(), name='series_episodios'),
-
+    
     path('delete-filme/<int:id>/', DeleteFilmeView.as_view(), name='delete_filme'),
     path('delete-serie/<int:id>/', DeleteSerieView.as_view(), name='delete_serie'),
     path('delete-ator/<int:id>/', DeleteAtorView.as_view(), name='delete_ator'),
@@ -37,4 +37,5 @@ urlpatterns = [
     path('editar-pais/<int:id>/', EditarPaisView.as_view(), name='editar_pais'),
     path('editar-temporada/<int:id>/', EditarTemporadaView.as_view(), name='editar_temporada'),
     path('editar-episodio/<int:id>/', EditarEpisodioView.as_view(), name='editar_episodio'),
+    path('editar-filme-ator/<int:id>/', EditarFilmeAtorView.as_view(), name='editar_filme_ator'),
 ]

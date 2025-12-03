@@ -1,5 +1,5 @@
 from django import forms
-from .models import Filme, Serie, Ator, Diretor, Genero, Pais, Continente, Temporada, Episodio
+from .models import Filme, Serie, Ator, Diretor, Genero, Pais, Continente, Temporada, Episodio, FilmeAtor
 
 
 class FilmeForm(forms.ModelForm):
@@ -53,4 +53,10 @@ class TemporadaForm(forms.ModelForm):
 class EpisodioForm(forms.ModelForm):
     class Meta:
         model = Episodio
+        fields = '__all__'
+
+
+class FilmeAtorForm(forms.ModelForm):
+    class Meta:
+        model = FilmeAtor
         fields = '__all__'

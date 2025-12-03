@@ -337,3 +337,24 @@ class DeleteFilmeAtorView(View):
         filme_ator.delete()
         messages.success(request, 'Relação filme-ator excluída com sucesso!')
         return redirect('filmes_atores')
+
+
+class EditarFilmeAtorView(View):
+    template_name = 'editar_filme_ator.html'
+
+    def get(self, request, id, *args, **kwargs):
+        fa = get_object_or_404(FilmeAtor, id=id)
+        form = FilmeAtorForm(instance=fa)
+        return render(request, self.template_name, {'fa': fa, 'form': form})
+
+    def post(self, request, id, *args, **kwargs):
+        fa = get_object_or_404(FilmeAtor, id=id)
+        form = FilmeAtorForm(request.POST, instance=fa)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Relação filme–ator editada com sucesso!')
+            return redirect('filmes_atores')
+
+        messages.error(request, 'Corrija os erros no formulário.')
+        return render(request, self.template_name, {'fa': fa, 'form': form})
